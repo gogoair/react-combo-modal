@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import FakeComponent from './FakeComponent';
 
-ReactDOM.render(
-    <div>
-        <FakeComponent />
-    </div>,
-    document.getElementById('react')
+render(
+	<div>
+		<FakeComponent />
+	</div>,
+	document.getElementById('react')
 );

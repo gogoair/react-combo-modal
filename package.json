@@ -6,7 +6,9 @@
   "main": "./lib/Modal.jsx",
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --config webpack.config.js  --hot --progress --colors --port 8080",
-    "test": "mocha -r mock-local-storage --compilers js:babel-core/register --require ./test/test.js \"test/**/*@(.js|.jsx)\""
+    "test": "mocha -r mock-local-storage --compilers js:babel-core/register --require ./test/test.js \"test/**/*@(.js|.jsx)\"",
+    "prepublish": "mkdir lib && ./node_modules/.bin/babel Components/Modal.jsx --out-file lib/ComboSelect.jsx && ./node_modules/.bin/babel --out-file lib/Modal.jsx",
+    "postpublish": "rm -rf ./lib"
   },
   "repository": {
     "type": "git",
