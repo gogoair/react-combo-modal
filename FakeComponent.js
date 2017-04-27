@@ -178,7 +178,6 @@ export default class FakeComponent extends Component {
 				<br/>
 				<br/>
 				<br/>
-				<a href="#" onClick={(e) => {e.preventDefault(); this.setState({open: true})}}>Open</a>
 				<br/>
 				<br/>
 				<br/>

@@ -30,7 +30,6 @@ export default class Modal extends React.Component {
 	}
 
 	componentWillUnmount() {
-		React.unmountComponentAtNode(this.popup);
 		document.body.removeChild(this.popup);
 
 		window.removeEventListener('click', this.globalMouseClick);
@@ -57,10 +56,6 @@ export default class Modal extends React.Component {
 				{
 					this.props.open && <div className="ReactComboModalBackground">
 						<div className="ReactComboModalHolder">
-							<div className="ReactComboModalHeader">
-								<a href="#" className="ReactComboModalHeader__close"
-								   onClick={this.closeCallback}></a>
-							</div>
 							<div className="ReactComboModal">
 								{content}
 							</div>
