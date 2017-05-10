@@ -13,6 +13,8 @@ require('../node_modules/react-combo-modal/style.css');
 ```
 
 ## props/options
+
+### open and onCloseCallback
 There are two mandatory props: first one is "open" which is a boolean and will control visibility of modal. Second one is "onCloseCallback", which will be activate on clicking on darkened area, is a callback function that returns an object with (for now only) open property.
 
 ```javascript
@@ -51,4 +53,41 @@ export default class FakeComponent extends Component {
 		);
 	}
 }
+```
+
+### style and customClassNames
+Some modal require additional styling options and there are two ways of doing that: if you want to add styles inline directly to the modal styles you would use props "style". Other way is to replace existing class names with custom ones in that case you should use props "customClassName". Either way, you are sending object with 3 properties: background, holder and modal each representing one element that is used in react-combo-modal.  
+
+```javascript
+
+	render() {
+
+		const style = {
+			background: {},
+			holder: {},
+			modal: {
+				background: 'none'
+			}
+		};
+
+		const customClassNames = {
+			background: '',
+			holder: '',
+			modal: 'asd'
+		};
+
+		return (
+			<div>
+				<a href="#" onClick={(e) => {e.preventDefault(); this.setState({open: true})}}>Open</a>
+				<Modal
+					customClassNames={customClassNames}
+					style={style}
+					open={this.state.open}
+					onCloseCallback={this.onCloseCallback}
+				>
+					Hello I am modal! :D
+				</Modal>
+			</div>
+		);
+	}
 ```

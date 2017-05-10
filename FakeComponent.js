@@ -19,209 +19,225 @@ export default class FakeComponent extends Component {
 
 	render() {
 
+		const style = {
+			background: {},
+			holder: {},
+			modal: {
+				background: 'none'
+			}
+		};
+
+		const customClassNames = {
+			background: '',
+			holder: '',
+			modal: ''
+		};
+
 		return (
 			<div>
 				<a href="#" onClick={(e) => {e.preventDefault(); this.setState({open: true})}}>Open</a>
 				<Modal
+					customClassNames={customClassNames}
+					style={style}
 					open={this.state.open}
 					onCloseCallback={this.onCloseCallback}
 				>
 					<from>
 						<label htmlFor="name">Name</label>
-						<input name="name" type="text"/>
-						<br/>
+						<input name="name" type="text" />
+						<br />
 						<label htmlFor="surname">Surname</label>
-						<input name="surname" type="text"/>
-						<br/>
+						<input name="surname" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="name">Name</label>
-						<input name="name" type="text"/>
-						<br/>
+						<input name="name" type="text" />
+						<br />
 						<label htmlFor="surname">Surname</label>
-						<input name="surname" type="text"/>
-						<br/>
+						<input name="surname" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 						<label htmlFor="phone">Phone</label>
-						<input name="phone" type="text"/>
-						<br/>
+						<input name="phone" type="text" />
+						<br />
 					</from>
 				</Modal>
-				<br/>
+				<br />
 				<div>asd</div>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
 			</div>
 		);
 	}
