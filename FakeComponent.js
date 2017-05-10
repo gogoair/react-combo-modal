@@ -37,8 +37,6 @@ export default class FakeComponent extends Component {
 			<div>
 				<a href="#" onClick={(e) => {e.preventDefault(); this.setState({open: true})}}>Open</a>
 				<Modal
-					customClassNames={customClassNames}
-					style={style}
 					open={this.state.open}
 					onCloseCallback={this.onCloseCallback}
 				>

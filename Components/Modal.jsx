@@ -54,11 +54,11 @@ export default class Modal extends React.Component {
 		return (
 			<div>
 				{
-					this.props.open && <div style={this.props.style.background}
+					this.props.open && <div style={this.props.style && this.props.style.background}
 						className={this.props.customClassNames && this.props.customClassNames.background ? this.props.customClassNames.background : 'ReactComboModalBackground'}>
-						<div style={this.props.style.holder}
+						<div style={this.props.style && this.props.style.holder}
 							className={this.props.customClassNames && this.props.customClassNames.holder ? this.props.customClassNames.holder : 'ReactComboModalHolder'}>
-							<div style={this.props.style.modal}
+							<div style={this.props.style && this.props.style.modal}
 								className={this.props.customClassNames && this.props.customClassNames.modal ? this.props.customClassNames.modal : 'ReactComboModal'}>
 								{content}
 							</div>
