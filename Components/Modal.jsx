@@ -29,7 +29,9 @@ export default class Modal extends React.Component {
 	}
 
 	componentWillUnmount() {
-		document.body.removeChild(this.popup);
+		if (document.body) {
+			document.body.removeChild(this.popup);
+		}
 
 		window.removeEventListener('click', this.globalMouseClick);
 	}
