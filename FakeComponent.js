@@ -1,46 +1,52 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Modal from './Components/Modal.jsx';
 
 export default class FakeComponent extends Component {
-
 	constructor(props) {
 		super(props);
 
 		this.onCloseCallback = this.onCloseCallback.bind(this);
 
 		this.state = {
-			open: false
-		}
+			open: false,
+		};
 	}
 
 	onCloseCallback(closeCallbackData) {
-		this.setState({open: closeCallbackData.open})
+		this.setState({ open: closeCallbackData.open });
 	}
 
 	render() {
-
 		const style = {
 			background: {},
 			holder: {},
 			modal: {
-				background: 'none'
-			}
+				background: 'none',
+			},
 		};
 
 		const customClassNames = {
 			background: '',
 			holder: '',
-			modal: ''
+			modal: '',
 		};
 
 		return (
 			<div>
-				<a href="#" onClick={(e) => {e.preventDefault(); this.setState({open: true})}}>Open</a>
+				<a
+					href="#"
+					onClick={e => {
+						e.preventDefault();
+						this.setState({ open: true });
+					}}
+				>
+					Open
+				</a>
 				<Modal
 					open={this.state.open}
 					onCloseCallback={this.onCloseCallback}
 				>
-					<from>
+					<form>
 						<label htmlFor="name">Name</label>
 						<input name="name" type="text" />
 						<br />
@@ -110,7 +116,7 @@ export default class FakeComponent extends Component {
 						<label htmlFor="phone">Phone</label>
 						<input name="phone" type="text" />
 						<br />
-					</from>
+					</form>
 				</Modal>
 				<br />
 				<div>asd</div>

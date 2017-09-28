@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 
 export default class Modal extends React.Component {
-
 	constructor(props) {
 		super(props);
 
@@ -12,7 +11,7 @@ export default class Modal extends React.Component {
 	}
 
 	componentDidMount() {
-		this.popup = document.createElement("div");
+		this.popup = document.createElement('div');
 		document.body.appendChild(this.popup);
 		this.renderLayer();
 
@@ -36,37 +35,63 @@ export default class Modal extends React.Component {
 	}
 
 	globalMouseClick(e) {
-		if (e.target.className == 'ReactComboModalHolder' || e.target.className == 'ReactComboModalBackground') {
+		if (
+			e.target.className == 'ReactComboModalHolder' ||
+			e.target.className == 'ReactComboModalBackground'
+		) {
 			this.props.onCloseCallback({
-				open: false
-			})
+				open: false,
+			});
 		}
 	}
 
 	closeCallback(e) {
 		e.preventDefault();
 		this.props.onCloseCallback({
-			open: false
-		})
+			open: false,
+		});
 	}
 
 	createModalWrapper(content) {
 		return (
 			<div>
-				{
-					this.props.open && <div style={this.props.style && this.props.style.background}
-						className={this.props.customClassNames && this.props.customClassNames.background ? this.props.customClassNames.background : 'ReactComboModalBackground'}>
-						<div style={this.props.style && this.props.style.holder}
-							className={this.props.customClassNames && this.props.customClassNames.holder ? this.props.customClassNames.holder : 'ReactComboModalHolder'}>
-							<div style={this.props.style && this.props.style.modal}
-								className={this.props.customClassNames && this.props.customClassNames.modal ? this.props.customClassNames.modal : 'ReactComboModal'}>
+				{this.props.open && (
+					<div
+						style={this.props.style && this.props.style.background}
+						className={
+							this.props.customClassNames &&
+							this.props.customClassNames.background
+								? this.props.customClassNames.background
+								: 'ReactComboModalBackground'
+						}
+					>
+						<div
+							style={this.props.style && this.props.style.holder}
+							className={
+								this.props.customClassNames &&
+								this.props.customClassNames.holder
+									? this.props.customClassNames.holder
+									: 'ReactComboModalHolder'
+							}
+						>
+							<div
+								style={
+									this.props.style && this.props.style.modal
+								}
+								className={
+									this.props.customClassNames &&
+									this.props.customClassNames.modal
+										? this.props.customClassNames.modal
+										: 'ReactComboModal'
+								}
+							>
 								{content}
 							</div>
 						</div>
 					</div>
-				}
+				)}
 			</div>
-		)
+		);
 	}
 
 	renderLayer() {
@@ -74,7 +99,7 @@ export default class Modal extends React.Component {
 	}
 
 	render() {
-		return <div></div>;
+		return <div />;
 	}
 }
 
@@ -82,5 +107,5 @@ Modal.propTypes = {
 	open: PropTypes.PropTypes.bool.isRequired,
 	onCloseCallback: PropTypes.PropTypes.func.isRequired,
 	style: PropTypes.PropTypes.object,
-	customClassNames: PropTypes.PropTypes.object
+	customClassNames: PropTypes.PropTypes.object,
 };

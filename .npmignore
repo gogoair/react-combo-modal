@@ -7,3 +7,5 @@ FakeComponent.js
 .idea
 .babelrc
 .eslintrc
+webpack.config.js
+.directory

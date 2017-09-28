@@ -1,10 +1,24 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
+import { AppContainer as HotContainer } from 'react-hot-loader';
+
 import FakeComponent from './FakeComponent';
 
-render(
-	<div>
-		<FakeComponent />
-	</div>,
-	document.getElementById('react')
-);
+function render(Component) {
+	ReactDOM.render(
+		<HotContainer>
+			<div>
+				<Component />
+			</div>
+		</HotContainer>,
+		document.getElementById('react')
+	);
+}
+
+render(FakeComponent);
+
+if (module.hot) {
+	module.hot.accept('./FakeComponent', () => {
+		render(FakeComponent);
+	});
+}
