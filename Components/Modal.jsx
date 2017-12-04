@@ -38,8 +38,8 @@ export default class Modal extends React.Component {
 
 	globalMouseClick(e) {
 		if (
-			e.target.className == 'ReactComboModalHolder' ||
-			e.target.className == 'ReactComboModalBackground'
+			e.target.className == this.props.customClassNames.holder ||
+			e.target.className == this.props.customClassNames.background
 		) {
 			this.props.onCloseCallback({
 				open: false,
@@ -60,32 +60,17 @@ export default class Modal extends React.Component {
 				{this.props.open && (
 					<div
 						style={this.props.style && this.props.style.background}
-						className={
-							this.props.customClassNames &&
-							this.props.customClassNames.background
-								? this.props.customClassNames.background
-								: 'ReactComboModalBackground'
-						}
+						className={this.props.customClassNames.background}
 					>
 						<div
 							style={this.props.style && this.props.style.holder}
-							className={
-								this.props.customClassNames &&
-								this.props.customClassNames.holder
-									? this.props.customClassNames.holder
-									: 'ReactComboModalHolder'
-							}
+							className={this.props.customClassNames.holder}
 						>
 							<div
 								style={
 									this.props.style && this.props.style.modal
 								}
-								className={
-									this.props.customClassNames &&
-									this.props.customClassNames.modal
-										? this.props.customClassNames.modal
-										: 'ReactComboModal'
-								}
+								className={this.props.customClassNames.modal}
 							>
 								{content}
 							</div>
@@ -106,8 +91,16 @@ export default class Modal extends React.Component {
 }
 
 Modal.propTypes = {
-	open: PropTypes.PropTypes.bool.isRequired,
-	onCloseCallback: PropTypes.PropTypes.func.isRequired,
-	style: PropTypes.PropTypes.object,
-	customClassNames: PropTypes.PropTypes.object,
+	open: PropTypes.bool,
+	onCloseCallback: PropTypes.func.isRequired,
+	style: PropTypes.object,
+	customClassNames: PropTypes.object,
 };
+
+Modal.defaultProps = {
+	customClassNames: {
+		background: 'ReactComboModalBackground',
+		holder: 'ReactComboModalHolder',
+		modal: 'ReactComboModal',
+	},
+}
