@@ -8,6 +8,7 @@ export default class Modal extends React.Component {
 
 		this.closeCallback = this.closeCallback.bind(this);
 		this.globalMouseClick = this.globalMouseClick.bind(this);
+		this.globalKeypress = this.globalKeypress.bind(this);
 	}
 
 	componentDidMount() {
@@ -15,16 +16,25 @@ export default class Modal extends React.Component {
 		document.body.appendChild(this.popup);
 		this.renderLayer();
 
-		window.addEventListener('click', this.globalMouseClick);
+		if (this.props.open) {
+			this.addEventListeners();
+		}
 	}
 
-	componentDidUpdate(lastProps) {
+	componentDidUpdate(prevProps) {
 		this.renderLayer();
 
 		if (this.props.open) {
 			document.body.style.overflow = 'hidden';
 		} else {
 			document.body.style.overflow = 'auto';
+		}
+
+		if (!prevProps.open && this.props.open) {
+			this.addEventListeners();
+		}
+		else if (prevProps.open && !this.props.open) {
+			this.removeEventListeners();
 		}
 	}
 
@@ -33,14 +43,23 @@ export default class Modal extends React.Component {
 			document.body.removeChild(this.popup);
 		}
 
-		window.removeEventListener('click', this.globalMouseClick);
+		this.removeEventListeners();
 	}
 
 	globalMouseClick(e) {
 		if (
-			e.target.className == this.props.customClassNames.holder ||
-			e.target.className == this.props.customClassNames.background
+			(e.target.className == this.props.customClassNames.holder ||
+			e.target.className == this.props.customClassNames.background)
+			&& this.props.closeOnClickOutside
 		) {
+			this.props.onCloseCallback({
+				open: false,
+			});
+		}
+	}
+
+	globalKeypress(e) {
+		if (e.keyCode == 27 && !this.props.ignoreEsc) {
 			this.props.onCloseCallback({
 				open: false,
 			});
@@ -52,6 +71,16 @@ export default class Modal extends React.Component {
 		this.props.onCloseCallback({
 			open: false,
 		});
+	}
+
+	addEventListeners() {
+		window.addEventListener('click', this.globalMouseClick);
+		window.addEventListener('keyup', this.globalKeypress);
+	}
+
+	removeEventListeners() {
+		window.removeEventListener('click', this.globalMouseClick);
+		window.removeEventListener('keyup', this.globalKeypress);
 	}
 
 	createModalWrapper(content) {
@@ -95,6 +124,8 @@ Modal.propTypes = {
 	onCloseCallback: PropTypes.func.isRequired,
 	style: PropTypes.object,
 	customClassNames: PropTypes.object,
+	closeOnClickOutside: PropTypes.bool,
+	ignoreEsc: PropTypes.bool,
 };
 
 Modal.defaultProps = {

@@ -15,7 +15,7 @@ require('../node_modules/react-combo-modal/style.css');
 ## props/options
 
 ### open and onCloseCallback
-There are two mandatory props: first one is "open" which is a boolean and will control visibility of modal. Second one is "onCloseCallback", which will be activate on clicking on darkened area, is a callback function that returns an object with (for now only) open property.
+There are two mandatory props: first one is "open" which is a boolean and will control visibility of modal. Second one is "onCloseCallback", a callback function that returns an object with (for now only) open property. onCloseCallback() will be called by default when user presses Escape key. To disable this, pass ignoreEsc prop to the component. Additionally, modal can be told to call onCloseCallback() on click outside the modal by passing closeOnClickOutside prop.
 
 ```javascript
 import React, {Component} from 'react';
@@ -91,3 +91,14 @@ Some modal require additional styling options and there are two ways of doing th
 		);
 	}
 ```
+
+### all props
+
+| Property         | Type    | Default | Description |
+| ------------ | ------- | ------- | ----------- |
+| **open** | boolean | false | Whether the modal is open. |
+| **onCloseCallback** | function | required | Function to call when an action that should close the modal is performed by the user. |
+| **closeOnClickOutside** | boolean | false | Close the modal (call onCloseCallback) when user clicks outside the modal |
+| **ignoreEsc** | boolean | false | Do not close the modal (call onCloseCallback) when user presses Escape key |
+| **style** | object of objects | undefined | Custom styles to apply to various parts of the modal by passing them as their style prop. Valid keys are background, holder and modal. |
+| **customClassNames** | object of strings | background: 'ReactComboModalBackground'<br>holder: 'ReactComboModalHolder'<br>modal: 'ReactComboModal' | Custom class names to replace the default ones for each part of the modal. Valid keys are background, holder and modal. |

@@ -33,9 +33,9 @@ describe('Initialization of component', () => {
         modal.unmount();
     });
 
-    it('calls close callback click outside', done => {
+    it('calls close callback on click outside when closeOnClickOutside is true', done => {
         const cb = sinon.spy();
-        const modal = mount(<Modal open onCloseCallback={cb} />);
+        const modal = mount(<Modal open closeOnClickOutside onCloseCallback={cb} />);
 
         const clickTester = () => {
             expect(cb.calledOnce).to.be.true;
@@ -54,9 +54,30 @@ describe('Initialization of component', () => {
         document.body.querySelector('.ReactComboModalBackground').dispatchEvent(event);
     });
 
+    it("doesn't call close callback on click outside when closeOnClickOutside is false", done => {
+        const cb = sinon.spy();
+        const modal = mount(<Modal open onCloseCallback={cb} />);
+
+        const clickTester = () => {
+            expect(cb.notCalled).to.be.true;
+            modal.unmount();
+            window.removeEventListener('click', clickTester);
+            done();
+        };
+
+        window.addEventListener('click', clickTester);
+
+        const event = new window.MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+        });
+         
+        document.body.querySelector('.ReactComboModalBackground').dispatchEvent(event);
+    });
+
     it('calls close callback on click outside with custom class names', done => {
         const cb = sinon.spy();
-        const modal = mount(<Modal open onCloseCallback={cb} customClassNames={{
+        const modal = mount(<Modal open closeOnClickOutside onCloseCallback={cb} customClassNames={{
             background: 'CustomBackground',
             holder: 'CustomHolder',
             modal: 'CustmModal',
@@ -81,7 +102,7 @@ describe('Initialization of component', () => {
 
     it("doesn't call close callback on click inside the modal", done => {
         const cb = sinon.spy();
-        const modal = mount(<Modal open onCloseCallback={cb}><div id="mock-div"></div></Modal>);
+        const modal = mount(<Modal open closeOnClickOutside onCloseCallback={cb}><div id="mock-div"></div></Modal>);
 
         const clickTester = () => {
             expect(cb.notCalled).to.be.true;
@@ -93,11 +114,61 @@ describe('Initialization of component', () => {
         window.addEventListener('click', clickTester);
 
         const event = new window.MouseEvent('click', {
-          bubbles: true,
-          cancelable: true,
+            bubbles: true,
+            cancelable: true,
         });
          
         document.getElementById('mock-div').dispatchEvent(event);
+    });
+
+    it('calls close callback on ESC when ignoreEsc is false', done => {
+        const cb = sinon.spy();
+        const modal = mount(<Modal open onCloseCallback={cb} />);
+
+        const keyTester = () => {
+            expect(cb.calledOnce).to.be.true;
+            modal.unmount();
+            window.removeEventListener('keyup', keyTester);
+            done();
+        };
+
+        window.addEventListener('keyup', keyTester);
+
+        const event = new window.KeyboardEvent('keyup', {
+            key: 'Escape',
+            code: 'Escape',
+            keyCode: 27,
+            which: 27,
+            bubbles: true,
+            cancelable: true,
+        });
+         
+        document.body.querySelector('.ReactComboModalBackground').dispatchEvent(event);
+    });
+
+    it("doesn't call close callback on ESC when ignoreEsc is false", done => {
+        const cb = sinon.spy();
+        const modal = mount(<Modal open ignoreEsc onCloseCallback={cb} />);
+
+        const keyTester = () => {
+            expect(cb.notCalled).to.be.true;
+            modal.unmount();
+            window.removeEventListener('keyup', keyTester);
+            done();
+        };
+
+        window.addEventListener('keyup', keyTester);
+
+        const event = new window.KeyboardEvent('keyup', {
+            key: 'Escape',
+            code: 'Escape',
+            keyCode: 27,
+            which: 27,
+            bubbles: true,
+            cancelable: true,
+        });
+         
+        document.body.querySelector('.ReactComboModalBackground').dispatchEvent(event);
     });
 
     it('starts closed and opens when open props is updated to true', done => {
