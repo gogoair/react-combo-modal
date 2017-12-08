@@ -89,17 +89,17 @@ export default class Modal extends React.Component {
 				{this.props.open && (
 					<div
 						style={this.props.style && this.props.style.background}
-						className={this.props.customClassNames.background}
+						className={this.props.customClassNames.background || Modal.defaultProps.customClassNames.background}
 					>
 						<div
 							style={this.props.style && this.props.style.holder}
-							className={this.props.customClassNames.holder}
+							className={this.props.customClassNames.holder || Modal.defaultProps.customClassNames.holder}
 						>
 							<div
 								style={
 									this.props.style && this.props.style.modal
 								}
-								className={this.props.customClassNames.modal}
+								className={this.props.customClassNames.modal || Modal.defaultProps.customClassNames.modal}
 							>
 								{content}
 							</div>

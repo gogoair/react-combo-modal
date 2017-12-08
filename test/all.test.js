@@ -187,12 +187,65 @@ describe('Initialization of component', () => {
     it('starts open and closes when open props is updated to false', done => {
         const modal = mount(<Modal open onCloseCallback={mockFunction}><div id="mock-div"></div></Modal>);
 
-
         expect(document.getElementById('mock-div')).to.exist;
 
         modal.setProps({open: false});
 
         expect(document.getElementById('mock-div')).to.be.null;
+
+        modal.unmount();
+        done();
+    });
+
+    it('uses default classes when no custom classes are provided', done => {
+        const modal = mount(<Modal open onCloseCallback={mockFunction}></Modal>);
+
+        expect(document.body.querySelector('.'+Modal.defaultProps.customClassNames.background)).to.exist;
+        expect(document.body.querySelector('.'+Modal.defaultProps.customClassNames.holder)).to.exist;
+        expect(document.body.querySelector('.'+Modal.defaultProps.customClassNames.modal)).to.exist;
+
+        modal.unmount();
+        done();
+    });
+
+    it('uses default classes when no custom classes are provided', done => {
+        const modal = mount(<Modal open onCloseCallback={mockFunction}></Modal>);
+
+        expect(document.body.querySelector('.'+Modal.defaultProps.customClassNames.background)).to.exist;
+        expect(document.body.querySelector('.'+Modal.defaultProps.customClassNames.holder)).to.exist;
+        expect(document.body.querySelector('.'+Modal.defaultProps.customClassNames.modal)).to.exist;
+
+        modal.unmount();
+        done();
+    });
+
+    it('uses provided custom classes', done => {
+        const customClassNames = {
+            background: 'testClassBackground',
+            holder: 'testClassHolder',
+            modal: 'testClassModal',
+        };
+
+        const modal = mount(<Modal open onCloseCallback={mockFunction} customClassNames={customClassNames}></Modal>);
+
+        expect(document.body.querySelector('.'+customClassNames.background)).to.exist;
+        expect(document.body.querySelector('.'+customClassNames.holder)).to.exist;
+        expect(document.body.querySelector('.'+customClassNames.modal)).to.exist;
+
+        modal.unmount();
+        done();
+    });
+
+    it('uses a mix of custom and default classes when partial custom classes are provided', done => {
+        const customClassNames = {
+            modal: 'testClassModal',
+        };
+
+        const modal = mount(<Modal open onCloseCallback={mockFunction} customClassNames={customClassNames}></Modal>);
+
+        expect(document.body.querySelector('.'+Modal.defaultProps.customClassNames.background)).to.exist;
+        expect(document.body.querySelector('.'+Modal.defaultProps.customClassNames.holder)).to.exist;
+        expect(document.body.querySelector('.'+customClassNames.modal)).to.exist;
 
         modal.unmount();
         done();
