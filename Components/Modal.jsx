@@ -22,19 +22,16 @@ export default class Modal extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		this.renderLayer();
+		if (prevProps.open !== this.props.open) {
+			this.renderLayer();
 
-		if (this.props.open) {
-			document.body.style.overflow = 'hidden';
-		} else {
-			document.body.style.overflow = 'auto';
-		}
-
-		if (!prevProps.open && this.props.open) {
-			this.addEventListeners();
-		}
-		else if (prevProps.open && !this.props.open) {
-			this.removeEventListeners();
+			if (!prevProps.open && this.props.open) {
+				document.body.style.overflow = 'hidden';
+				this.addEventListeners();
+			} else {
+				document.body.style.overflow = 'auto';
+				this.removeEventListeners();
+			}
 		}
 	}
 
@@ -49,8 +46,8 @@ export default class Modal extends React.Component {
 	globalMouseClick(e) {
 		if (
 			(e.target.className == this.props.customClassNames.holder ||
-			e.target.className == this.props.customClassNames.background)
-			&& this.props.closeOnClickOutside
+				e.target.className == this.props.customClassNames.background) &&
+			this.props.closeOnClickOutside
 		) {
 			this.props.onCloseCallback({
 				open: false,
@@ -89,17 +86,19 @@ export default class Modal extends React.Component {
 				{this.props.open && (
 					<div
 						style={this.props.style && this.props.style.background}
-						className={this.props.customClassNames.background || Modal.defaultProps.customClassNames.background}
+						className={
+							this.props.customClassNames.background || Modal.defaultProps.customClassNames.background
+						}
 					>
 						<div
 							style={this.props.style && this.props.style.holder}
 							className={this.props.customClassNames.holder || Modal.defaultProps.customClassNames.holder}
 						>
 							<div
-								style={
-									this.props.style && this.props.style.modal
+								style={this.props.style && this.props.style.modal}
+								className={
+									this.props.customClassNames.modal || Modal.defaultProps.customClassNames.modal
 								}
-								className={this.props.customClassNames.modal || Modal.defaultProps.customClassNames.modal}
 							>
 								{content}
 							</div>
@@ -134,4 +133,4 @@ Modal.defaultProps = {
 		holder: 'ReactComboModalHolder',
 		modal: 'ReactComboModal',
 	},
-}
+};
