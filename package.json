@@ -1,16 +1,13 @@
 {
   "name": "react-combo-modal",
-  "version": "1.0.2",
-  "keywords": ["react", "modal", "react-component"],
+  "version": "1.0.1",
+  "keywords": "react, modal, react-component",
   "description": "React modal component",
   "main": "./lib/Modal.jsx",
   "scripts": {
-    "start":
-      "./node_modules/.bin/webpack-dev-server --config webpack.config.js  --hot --progress --colors --port 8081 --open",
-    "test":
-      "mocha --compilers js:babel-core/register --require ./test/test.js \"test/**/*@(.js|.jsx)\"",
-    "prepublish":
-      "rm -rf ./lib && mkdir lib && ./node_modules/.bin/babel Components/Modal.jsx --out-file lib/Modal.jsx && ./node_modules/.bin/babel lib/Modal.jsx",
+    "start": "./node_modules/.bin/webpack-dev-server --config webpack.config.js  --hot --progress --colors --port 8081 --open",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test.js \"test/**/*@(.js|.jsx)\"",
+    "prepublish": "rm -rf ./lib && mkdir lib && ./node_modules/.bin/babel Components/Modal.jsx --out-file lib/Modal.jsx && ./node_modules/.bin/babel lib/Modal.jsx",
     "postpublish": "rm -rf ./lib"
   },
   "repository": {
