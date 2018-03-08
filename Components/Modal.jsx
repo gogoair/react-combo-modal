@@ -22,19 +22,17 @@ export default class Modal extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
+		// this needs to always run
 		this.renderLayer();
 
-		if (this.props.open) {
-			document.body.style.overflow = 'hidden';
-		} else {
-			document.body.style.overflow = 'auto';
-		}
-
-		if (!prevProps.open && this.props.open) {
-			this.addEventListeners();
-		}
-		else if (prevProps.open && !this.props.open) {
-			this.removeEventListeners();
+		if (prevProps.open !== this.props.open) {
+			if (!prevProps.open && this.props.open) {
+				document.body.style.overflow = 'hidden';
+				this.addEventListeners();
+			} else {
+				document.body.style.overflow = 'auto';
+				this.removeEventListeners();
+			}
 		}
 	}
 
