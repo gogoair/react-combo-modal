@@ -39,6 +39,7 @@ export default class Modal extends React.Component {
 	componentWillUnmount() {
 		if (document.body) {
 			document.body.removeChild(this.popup);
+            document.body.style.overflow = 'auto';
 		}
 
 		this.removeEventListeners();
